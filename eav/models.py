@@ -35,11 +35,15 @@ Classes
 
 from datetime import datetime
 
+import django
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+if django.VERSION < (1, 9):
+    from django.contrib.contenttypes import generic
+else:
+    from django.contrib.contenttypes import fields as generic
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.conf import settings
